@@ -6,7 +6,10 @@ include('../utils/generate_uuid.php');
 
 function submit_survey($conn) {
 
-    if (!isset($_POST['result'])) {
+    $input = file_get_contents('php://input');
+    $data = json_decode($input, true);
+
+    if (!isset($data['result'])) {
         echo json_encode([
             "status" => "error",
             "message" => "Missing parameters"
@@ -15,7 +18,7 @@ function submit_survey($conn) {
     }
 
     $user_id = generate_uuid();
-    $result = $_POST['result']; //JSON
+    $result = $data['result']; //JSON
 
     $query = "INSERT INTO survey (user_id, result) VALUES (?,?)";
     $stmt = $conn->prepare($query);

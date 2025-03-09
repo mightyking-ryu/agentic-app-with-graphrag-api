@@ -5,7 +5,10 @@ include('../config/cors.php');
 
 function fetch_response($conn) {
 
-    if (!isset($_POST['user_id']) || !isset($_POST['question_id'])) {
+    $input = file_get_contents('php://input');
+    $data = json_decode($input, true);
+
+    if (!isset($data['user_id']) || !isset($data['question_id'])) {
         echo json_encode([
             "status" => "error",
             "message" => "Missing parameters"
@@ -14,8 +17,8 @@ function fetch_response($conn) {
         return;
     }
     
-    $user_id = $_POST['user_id'];
-    $question_id = $_POST['question_id'];
+    $user_id = $data['user_id'];
+    $question_id = $data['question_id'];
 
     $query = "SELECT response FROM response_queue WHERE question_id = ? AND user_id = ? ORDER BY created_at ASC LIMIT 1";
     

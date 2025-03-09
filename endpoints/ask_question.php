@@ -6,7 +6,10 @@ include('../utils/generate_uuid.php');
 
 function ask_question($conn) {
 
-    if (!isset($_POST['user_id']) || !isset($_POST['question'])) {
+    $input = file_get_contents('php://input');
+    $data = json_decode($input, true);
+
+    if (!isset($data['user_id']) || !isset($data['question'])) {
         echo json_encode([
             "status" => "error",
             "message" => "Missing parameters"
@@ -14,9 +17,9 @@ function ask_question($conn) {
         return;
     }
 
-    $user_id = $_POST['user_id'];
+    $user_id = $data['user_id'];
     $question_id = generate_uuid();
-    $question = $_POST['question'];
+    $question = $data['question'];
 
     $query = "INSERT INTO question_queue (user_id, question_id, question) VALUES (?,?,?)";
     $stmt = $conn->prepare($query);
