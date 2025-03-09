@@ -13,8 +13,8 @@ function fetch_response($conn) {
         return;
     }
     
-    $user_id_hex = $_GET['user_id'];
-    $question_id_hex = $_GET['question_id'];
+    $user_id_hex = $_POST['user_id'];
+    $question_id_hex = $_POST['question_id'];
     
     $user_id = hex2bin($user_id_hex);
     $question_id = hex2bin($question_id_hex);
