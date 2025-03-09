@@ -13,11 +13,8 @@ function fetch_response($conn) {
         return;
     }
     
-    $user_id_hex = $_POST['user_id'];
-    $question_id_hex = $_POST['question_id'];
-    
-    $user_id = hex2bin($user_id_hex);
-    $question_id = hex2bin($question_id_hex);
+    $user_id = $_POST['user_id'];
+    $question_id = $_POST['question_id'];
 
     $query = "SELECT response FROM response_queue WHERE question_id = ? AND user_id = ? ORDER BY created_at ASC LIMIT 1";
     
@@ -30,7 +27,7 @@ function fetch_response($conn) {
         return;
     }
     
-    $stmt->bind_param("bb", $question_id, $user_id);
+    $stmt->bind_param("ss", $question_id, $user_id);
     
     $stmt->execute();
     $result = $stmt->get_result();
@@ -56,7 +53,7 @@ function fetch_response($conn) {
         return;
     }
     
-    $stmt->bind_param("bb", $question_id, $user_id);
+    $stmt->bind_param("ss", $question_id, $user_id);
     
     $stmt->execute();
     $result = $stmt->get_result();

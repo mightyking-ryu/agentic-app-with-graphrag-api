@@ -18,7 +18,7 @@ function submit_survey($conn) {
 
     $query = "INSERT INTO survey (user_id, result) VALUES (?,?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("bs", $user_id, $result);
+    $stmt->bind_param("ss", $user_id, $result);
     
     if ($stmt->execute()) {
         $response = array(
