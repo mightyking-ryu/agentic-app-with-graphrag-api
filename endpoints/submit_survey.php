@@ -1,6 +1,7 @@
 <?php
 
 include('../config/database.php');
+include('../config/cors.php');
 include('../utils/generate_uuid.php');
 
 function submit_survey($conn) {

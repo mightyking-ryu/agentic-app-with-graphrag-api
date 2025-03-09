@@ -1,6 +1,7 @@
 <?php
 
 include('../config/database.php');
+include('../config/cors.php');
 
 function fetch_response($conn) {
 
