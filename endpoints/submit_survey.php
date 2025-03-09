@@ -10,7 +10,6 @@ function submit_survey($conn) {
             "status" => "error",
             "message" => "Missing parameters"
         ]);
-        $conn->close();
         return;
     }
 

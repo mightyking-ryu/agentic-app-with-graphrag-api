@@ -10,7 +10,6 @@ function ask_question($conn) {
             "status" => "error",
             "message" => "Missing parameters"
         ]);
-        $conn->close();
         return;
     }
 
