@@ -36,7 +36,7 @@ function fetch_response($conn) {
         $response = array(
             "status" => "success",
             "message" => "Response generated",
-            "question_id" => $row['response']
+            "response" => $row['response']
         );
         echo json_encode($response);
         return;
