@@ -5,6 +5,15 @@ include('../utils/generate_uuid.php');
 
 function ask_question($conn) {
 
+    if (!isset($_POST['user_id']) || !isset($_POST['question'])) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Missing parameters"
+        ]);
+        $conn->close();
+        return;
+    }
+
     $user_id_hex = $_POST['user_id'];
     $question_id = generate_uuid();
     $question = $_POST['question'];

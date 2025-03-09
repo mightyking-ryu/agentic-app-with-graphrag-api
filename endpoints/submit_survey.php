@@ -5,6 +5,15 @@ include('../utils/generate_uuid.php');
 
 function submit_survey($conn) {
 
+    if (!isset($_POST['result'])) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Missing parameters"
+        ]);
+        $conn->close();
+        return;
+    }
+
     $user_id = generate_uuid();
     $result = $_POST['result']; //JSON
 
