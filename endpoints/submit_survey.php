@@ -18,7 +18,7 @@ function submit_survey($conn) {
     }
 
     $user_id = generate_uuid();
-    $result = $data['result']; //JSON
+    $result = json_encode($data['result']); //JSON
 
     $query = "INSERT INTO survey (user_id, result) VALUES (?,?)";
     $stmt = $conn->prepare($query);
