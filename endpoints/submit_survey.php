@@ -15,7 +15,7 @@ function submit_survey($conn) {
     if ($stmt->execute()) {
         $response = array(
             "status" => "success",
-            "message" => "Survey submitted successfully.",
+            "message" => "Survey submitted successfully",
             "user_id" => $user_id
         );
         echo json_encode($response);
